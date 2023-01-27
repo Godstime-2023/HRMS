@@ -18,6 +18,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     List<Employee> findByHireDateBefore(LocalDate hireDate);
     List<Employee> findByHireDateBetween(LocalDate startDate, LocalDate endDate);
     List<Employee> findByTerminated(boolean terminated);
-    List<Employee> findByEmailContaining(String email);
+    List<Employee> findByEmail(String email);
     List<Employee> findByPhoneNumberContaining(String phoneNumber);
 }

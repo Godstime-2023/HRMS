@@ -14,8 +14,16 @@ public interface PositionService {
     List<Position> findAll();
     List<Position> findByEmployeeCount();
     List<Position> findByEmployeeCount(Long departmentId);
-    Position save(Position position);
-    Position update(Position position);
-    void delete(Long id);
 
+
+    boolean existsById(Long id);
+
+    Position updatePosition(Long positionId, Position position);
+
+    Position createPosition(Position position);
+
+    void deletePosition(Long positionId);
+
+    Position getPositionById(Long positionId);
 }
+

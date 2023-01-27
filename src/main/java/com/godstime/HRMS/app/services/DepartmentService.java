@@ -15,4 +15,13 @@ public interface DepartmentService {
         Department findById(Long id);
 
 
+    boolean existsById(Long id);
+
+    Department updateDepartment(Long id, Department department);
+
+    void deleteDepartment(Long id);
+
+    Department createDepartment(Department department);
+
+    Department getDepartmentById(Long id);
 }

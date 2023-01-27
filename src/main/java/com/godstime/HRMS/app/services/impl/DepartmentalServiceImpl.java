@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DepartmentalServiceImpl implements DepartmentService {
-
 
     private final DepartmentRepository departmentRepository;
 
@@ -21,9 +21,39 @@ public class DepartmentalServiceImpl implements DepartmentService {
         this.departmentRepository = departmentRepository;
     }
 
+
+    @Override
+    public Department createDepartment(Department department) {
+        if(department.getId() != null){
+            throw new IllegalArgumentException("A new department should not have an ID.");
+        }
+        return departmentRepository.save(department);
+        // return null;
+    }
+
+    @Override
+    public Department updateDepartment(Long id, Department department) {
+        if(id == null){
+            throw new IllegalArgumentException("A department ID must be present when updating a department.");
+        }
+        if(!departmentRepository.existsById(id)){
+            throw new DepartmentNotFoundException("Department with ID "+id+" not found.");
+        }
+        department.setId(id);
+        return departmentRepository.save(department);
+        // return null;
+    }
+
     @Override
     public List<Department> findAll() {
         return departmentRepository.findAll();
+    }
+
+
+    @Override
+    public Department findById(Long id) {
+        return departmentRepository.findById(id)
+                .orElseThrow(() -> new DepartmentNotFoundException(id));
     }
 
     @Override
@@ -35,6 +65,20 @@ public class DepartmentalServiceImpl implements DepartmentService {
         return department;
     }
 
+
+    @Override
+    public Department getDepartmentById(Long id) {
+
+        if(id == null){
+            throw new IllegalArgumentException("A department ID must be present when fetching a department.");
+        }
+        Optional<Department> department = departmentRepository.findById(id);
+        if(!department.isPresent()){
+            throw new DepartmentNotFoundException("Department with ID "+id+" not found.");
+        }
+        return department.get();
+        //  return null;
+    }
 
     @Override
     public List<Department> findByManagerId(Long managerId) {
@@ -55,24 +99,23 @@ public class DepartmentalServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department findById(Long id) {
-        return departmentRepository.findById(id).orElseThrow(() -> new DepartmentNotFoundException(id));
+    public boolean existsById(Long id) {
+        return false;
     }
+
+
+    @Override
+    public void deleteDepartment(Long id) {
+
+        if(id == null){
+            throw new IllegalArgumentException("A department ID must be present when deleting a department.");
+        }
+        if(!departmentRepository.existsById(id)){
+            throw new DepartmentNotFoundException("Department with ID "+id+" not found.");
+        }
+        departmentRepository.deleteById(id);
+
+    }
+
 }
-
-
-
-
-
-
-
-//    @Override
-//    public Department save(Department department) {
-//        return departmentRepository.save(department);
-//    }
-//
-//    @Override
-//    public void delete(Department department) {
-//        departmentRepository.delete(department);
-//    }
-//}
+/////

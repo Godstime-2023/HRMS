@@ -1,11 +1,20 @@
 package com.godstime.HRMS.app.services;
 
 import com.godstime.HRMS.app.entities.Employee;
+import com.godstime.HRMS.app.exceptions.DepartmentNotFoundException;
+import com.godstime.HRMS.app.exceptions.EmployeeNotFoundException;
+import com.godstime.HRMS.app.exceptions.PositionNotFoundException;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public interface EmployeeService {
+
+    Employee createEmployee(Employee employee) throws DepartmentNotFoundException, PositionNotFoundException;
+
+    Employee updateEmployee(Long id, Employee employee) throws EmployeeNotFoundException, DepartmentNotFoundException, PositionNotFoundException;
+
+    boolean deleteEmployee(Long id) throws EmployeeNotFoundException;
 
     Employee findById(Long id);
     List<Employee> findAll();
@@ -20,10 +29,10 @@ public interface EmployeeService {
     List<Employee> findByHireDateBefore(LocalDate hireDate);
     List<Employee> findByHireDateBetween(LocalDate startDate, LocalDate endDate);
     List<Employee> findByTerminated(boolean terminated);
-    List<Employee> findByEmailContaining(String email);
-    List<Employee> findByPhoneNumberContaining(String phoneNumber);
+    List<Employee> findByEmail(String email);
+    List<Employee> findByPhoneNumber(String phoneNumber);
     Employee save(Employee employee);
-    Employee update(Employee employee);
-    void delete(Long id);
+    Employee getEmployee(Long employeeId);
+    void deleteById(Long id);
 }
 //
