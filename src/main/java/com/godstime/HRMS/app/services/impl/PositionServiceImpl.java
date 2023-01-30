@@ -1,5 +1,6 @@
 package com.godstime.HRMS.app.services.impl;
 
+import com.godstime.HRMS.app.entities.Employee;
 import com.godstime.HRMS.app.entities.Position;
 import com.godstime.HRMS.app.exceptions.PositionCreationFailedException;
 import com.godstime.HRMS.app.exceptions.PositionDeletionFailedException;
@@ -54,17 +55,17 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
-    public Position findByName(String name) throws PositionNotFoundException {
-        Position position = positionRepository.findByName(name);
+    public Position findByFirstName(String firstName) throws PositionNotFoundException {
+        Position position = positionRepository.findByFirstName(firstName);
         if (position == null) {
-            throw new PositionNotFoundException("Position with name " + name + " not found");
+            throw new PositionNotFoundException("Position with name " + firstName + " not found");
         }
         return position;
     }
 
     @Override
-    public List<Position> findByDepartmentId(Long departmentId) throws PositionNotFoundException {
-        List<Position> positions = positionRepository.findByDepartmentId(departmentId);
+    public List<Position> findByDepartment(Long departmentId) throws PositionNotFoundException {
+        List<Position> positions = positionRepository.findByDepartment(departmentId);
         if (positions.isEmpty()) {
             throw new PositionNotFoundException("Position with department id " + departmentId + " not found");
         }
@@ -72,8 +73,8 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
-    public List<Position> findByEmployeeId(Long employeeId) throws PositionNotFoundException {
-        List<Position> positions = positionRepository.findByEmployeeId(employeeId);
+    public List<Position> findByEmployee(Employee employeeId) throws PositionNotFoundException {
+        List<Position> positions = positionRepository.findByEmployee(employeeId);
         if (positions.isEmpty()) {
             throw new PositionNotFoundException("Position with employee id " + employeeId + " not found");
         }
@@ -86,16 +87,16 @@ public class PositionServiceImpl implements PositionService {
         return positionRepository.findAll();
     }
 
-    @Override
-    public List<Position> findByEmployeeCount() {
-        return positionRepository.findByEmployeeCount();
-    }
+   // @Override
+//    public List<Position> findByEmployeeCount() {
+//        return positionRepository.findByEmployeeCount();
+//    }
 
-    @Override
-    public List<Position> findByEmployeeCount(Long departmentId) {
-        return positionRepository.findByEmployeeCount(departmentId);
-
-    }
+//    @Override
+//    public List<Position> findByEmployeeCount(Long departmentId) {
+//        return positionRepository.findByEmployeeCount(departmentId);
+//
+//    }
 
     @Override
     public Position getPositionById(Long positionId) {
@@ -115,52 +116,10 @@ public class PositionServiceImpl implements PositionService {
         }
     }
 
-
-//
-//    @Override
-//    public Position save(Position position) {
-//        return null;
-//    }
-//
-//
-//    @Override
-//    public Position update(Position position) {
-//        return positionRepository.save(position);
-//    }
-//
-//    @Override
-//    public void delete(Long id) {
-//        positionRepository.deleteById(id);
-//
-//    }
-
     @Override
     public boolean existsById(Long id) {
         return positionRepository.existsById(id);
     }
 //////////////////////////////////////////////////////////////////////////////
-   // import org.springframework.stereotype.Service;
-
-  //  @Service
-  //  public class PositionServiceImpl implements PositionService {
-
-     //   private final PositionRepository positionRepository;
-
-      //  public PositionServiceImpl(PositionRepository positionRepository) {
-      //      this.positionRepository = positionRepository;
-      //  }
-
-//        @Override
-//        public boolean existsById(Long id) {
-//            return positionRepository.existsById(id);
-//        }
-
-
-  //  }
-
-
-
-
-
 
 }

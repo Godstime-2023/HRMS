@@ -80,14 +80,14 @@ public class DepartmentalServiceImpl implements DepartmentService {
         //  return null;
     }
 
-    @Override
-    public List<Department> findByManagerId(Long managerId) {
-        List<Department> departments = departmentRepository.findByManagerId(managerId);
-        if (departments.isEmpty()) {
-            throw new DepartmentNotFoundException(managerId);
-        }
-        return departments;
-    }
+//    @Override
+//    public List<Department> findByManagerId(Long managerId) {
+//        List<Department> departments = departmentRepository..findByManagerId(managerId);
+//        if (departments.isEmpty()) {
+//            throw new DepartmentNotFoundException(managerId);
+//        }
+//        return departments;
+//    }
 
     @Override
     public Department findByLocation(String location) {

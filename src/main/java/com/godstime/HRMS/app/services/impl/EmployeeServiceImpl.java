@@ -127,28 +127,28 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> findBySalaryGreaterThan(double salary) {
-        return employeeRepository.findBySalaryGreaterThan(salary);
+    public List<Employee> findBySalary(double salary) {
+        return employeeRepository.findBySalary(salary);
     }
 
     @Override
-    public List<Employee> findByHireDateAfter(LocalDate hireDate) {
-        return employeeRepository.findByHireDateAfter(hireDate);
+    public List<Employee> findByHireDate(LocalDate hireDate) {
+        return employeeRepository.findByHireDate(hireDate);
     }
 
-    @Override
-    public List<Employee> findByHireDateBefore(LocalDate hireDate) {
-        return employeeRepository.findByHireDateBefore(hireDate);
-    }
+//    @Override
+//    public List<Employee> findByHireDateBefore(LocalDate hireDate) {
+//        return employeeRepository.findByHireDateBefore(hireDate);
+//    }
+
+//    @Override
+//    public List<Employee> findByHireDateBetween(LocalDate startDate, LocalDate endDate) {
+//        return employeeRepository.findByHireDateBetween(startDate, endDate);
+//    }
 
     @Override
-    public List<Employee> findByHireDateBetween(LocalDate startDate, LocalDate endDate) {
-        return employeeRepository.findByHireDateBetween(startDate, endDate);
-    }
-
-    @Override
-    public List<Employee> findByTerminated(boolean terminated) {
-        return employeeRepository.findByTerminated(terminated);
+    public List<Employee> findByTerminatedDate(boolean terminated) {
+        return employeeRepository.findByTerminatedDate(terminated);
     }
 
     @Override
@@ -160,7 +160,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findByPhoneNumber(String phoneNumber) {
-        return null;
+        return employeeRepository.findByPhoneNumber(phoneNumber);
     }
 
     @Override

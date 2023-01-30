@@ -14,7 +14,7 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     Department findByName(String name);
 
     // Custom query method to find all departments by manager id
-    List<Department> findByManagerId(Long managerId);
+   // List<Department> findByManagerId(Long managerId);
 
     // Custom query method to find department by location
     Department findByLocation(String location);

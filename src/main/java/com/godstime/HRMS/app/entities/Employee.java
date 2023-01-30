@@ -10,7 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Builder
-@Data
+//@Data
 @Entity
 @Table(name = "employees")
 public class Employee {
@@ -28,9 +28,16 @@ public class Employee {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
+
     @Column(name = "hire_date")
     @Temporal(TemporalType.DATE)
     private Date hireDate;
+
+    @Column(name = "terminated_date")
+    @Temporal(TemporalType.DATE)
+    private Date terminatedDate;
 
     @ManyToOne
     @JoinColumn(name = "position_id")

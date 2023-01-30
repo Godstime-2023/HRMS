@@ -24,11 +24,11 @@ public interface EmployeeService {
     List<Employee> findByLastName(String lastName);
     List<Employee> findByDepartmentId(Long departmentId);
     List<Employee> findByPositionId(Long positionId);
-    List<Employee> findBySalaryGreaterThan(double salary);
-    List<Employee> findByHireDateAfter(LocalDate hireDate);
-    List<Employee> findByHireDateBefore(LocalDate hireDate);
-    List<Employee> findByHireDateBetween(LocalDate startDate, LocalDate endDate);
-    List<Employee> findByTerminated(boolean terminated);
+    List<Employee> findBySalary(double salary);
+    List<Employee> findByHireDate(LocalDate hireDate);
+  //  List<Employee> findByHireDateBefore(LocalDate hireDate);
+  //  List<Employee> findByHireDateBetween(LocalDate startDate, LocalDate endDate);
+    List<Employee> findByTerminatedDate(boolean terminatedDate);
     List<Employee> findByEmail(String email);
     List<Employee> findByPhoneNumber(String phoneNumber);
     Employee save(Employee employee);
